@@ -1,13 +1,16 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-function MealDetailScreen({ navigation }) {
+function CategorieMealsScreen({ navigation }) {
     return (
         <View style={styles.screen}>
-            <Text>MealDetailScreen</Text>
+            <Text>Category Meal Screen</Text>
             <Button
-                title="Go back to categories!"
-                onPress={() => navigation.popToTop()}
+                title="Go to meal detail!"
+                onPress={() => navigation.navigate('MealDetail')}
+            />
+            <Button title="Go back"
+                onPress={() => navigation.pop()}
             />
         </View>
     );
@@ -20,4 +23,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MealDetailScreen;
+export default CategorieMealsScreen;
