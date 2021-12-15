@@ -1,12 +1,13 @@
 import AppLoading from 'expo-app-loading';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import CategorieMealsScreen from './screens/CategorieMealsScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import colors from './config/colors';
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -35,7 +36,10 @@ export default function App() {
         <Stack.Screen
           name="CategoryMeals"
           component={CategorieMealsScreen}
-          options={{ title: 'Categories meals screen' }}
+          options={
+            ({ route }) => ({ title: route.params.title })
+          }
+
         />
         <Stack.Screen
           name="MealDetail"

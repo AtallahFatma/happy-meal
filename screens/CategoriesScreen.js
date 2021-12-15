@@ -1,14 +1,31 @@
-import React from 'react';
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import colors from '../config/colors';
 import { CATEGORIES } from '../data/dummy-data'
 
 
 
 function CategoriesScreen({ navigation }) {
 
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerStyle: {
+                backgroundColor: Platform.OS === 'android' ? colors.primary : ''
+            },
+            headerTitleStyle: {
+                fontWeight: 'bold'
+            },
+            headerTintColor: Platform.OS === 'android' ? colors.white : colors.primary,
+        });
+    }, [navigation]);
+
     const renderGridItem = (itemData) => {
-        return <TouchableOpacity onPress={() => navigation.navigate('CategoryMeals')}>
-            <View style={styles.grid}>
+        return <TouchableOpacity
+            style={styles.grid}
+            onPress={() => navigation.navigate('CategoryMeals', {
+                title: itemData.item.title
+            })}>
+            <View>
                 <Text>{itemData.item.title}</Text>
             </View>
         </TouchableOpacity>
@@ -25,6 +42,7 @@ function CategoriesScreen({ navigation }) {
         />
     );
 }
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
