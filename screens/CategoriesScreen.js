@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
-import { FlatList, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import colors from '../config/colors';
+import { FlatList, StyleSheet } from 'react-native';
+import CategoryGridTile from '../components/CategoryGridTile';
 import { CATEGORIES } from '../data/dummy-data'
 
 
@@ -16,16 +16,13 @@ function CategoriesScreen({ navigation }) {
     }, [navigation]);
 
     const renderGridItem = (itemData) => {
-        return <TouchableOpacity
-            style={styles.grid}
-            onPress={() => navigation.navigate('CategoryMeals', {
+        return <CategoryGridTile
+            title={itemData.item.title}
+            color={itemData.item.color}
+            onSelect={() => navigation.navigate('CategoryMeals', {
                 categoryId: itemData.item.id
-            })}>
-            <View>
-                <Text>{itemData.item.title}</Text>
-            </View>
-        </TouchableOpacity>
-
+            })}
+        />
     }
 
     return (
@@ -44,11 +41,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    grid: {
-        flex: 1,
-        margin: 15,
-        height: 150
     }
 })
 

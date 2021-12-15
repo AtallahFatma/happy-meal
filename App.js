@@ -69,6 +69,5 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'OpenSansBold',
-
   }
 });
