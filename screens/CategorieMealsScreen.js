@@ -1,13 +1,16 @@
 import React, { useLayoutEffect } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import colors from '../config/colors';
+import { CATEGORIES } from '../data/dummy-data';
 
 function CategorieMealsScreen({ route, navigation }) {
-    const { title } = route.params;
+    const { categoryId } = route.params;
+
+    const selectedGategory = CATEGORIES.find(cat => cat.id === categoryId);
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerTitle: title,
+            headerTitle: selectedGategory.title,
             headerStyle: {
                 backgroundColor: colors.orange,
             },
@@ -17,7 +20,8 @@ function CategorieMealsScreen({ route, navigation }) {
 
     return (
         <View style={styles.screen}>
-            <Text>Category Meal Screen: {JSON.stringify(title)}</Text>
+            <Text>Category Meal Screen: </Text>
+            <Text>{selectedGategory.title}</Text>
             <Button
                 title="Go to meal detail!"
                 onPress={() => navigation.navigate('MealDetail')}

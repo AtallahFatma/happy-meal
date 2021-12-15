@@ -23,7 +23,7 @@ function CategoriesScreen({ navigation }) {
         return <TouchableOpacity
             style={styles.grid}
             onPress={() => navigation.navigate('CategoryMeals', {
-                title: itemData.item.title
+                categoryId: itemData.item.id
             })}>
             <View>
                 <Text>{itemData.item.title}</Text>
