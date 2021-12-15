@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Platform, StyleSheet, Text, View } from 'react-native';
 import colors from '../config/colors';
 import { CATEGORIES } from '../data/dummy-data';
 
@@ -11,10 +11,6 @@ function CategorieMealsScreen({ route, navigation }) {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: selectedGategory.title,
-            headerStyle: {
-                backgroundColor: colors.orange,
-            },
-            headerTintColor: colors.white,
         });
     }, [navigation, route]);
 

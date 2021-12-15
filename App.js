@@ -8,6 +8,9 @@ import CategorieMealsScreen from './screens/CategorieMealsScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import colors from './config/colors';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens();
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -27,7 +30,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={
+        {
+          headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? colors.primary : ''
+          },
+          headerTintColor: Platform.OS === 'android' ? colors.white : colors.primary,
+        }
+      }>
         <Stack.Screen
           name="CategoriesScreen"
           component={CategoriesScreen}
@@ -39,7 +49,6 @@ export default function App() {
           options={
             ({ route }) => ({ title: route.params.title })
           }
-
         />
         <Stack.Screen
           name="MealDetail"

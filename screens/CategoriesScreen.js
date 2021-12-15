@@ -9,13 +9,9 @@ function CategoriesScreen({ navigation }) {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerStyle: {
-                backgroundColor: Platform.OS === 'android' ? colors.primary : ''
-            },
             headerTitleStyle: {
                 fontWeight: 'bold'
             },
-            headerTintColor: Platform.OS === 'android' ? colors.white : colors.primary,
         });
     }, [navigation]);
 
