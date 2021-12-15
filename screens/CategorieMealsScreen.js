@@ -1,12 +1,12 @@
 import React, { useLayoutEffect } from 'react';
-import { Button, Platform, StyleSheet, Text, View } from 'react-native';
-import colors from '../config/colors';
-import { CATEGORIES } from '../data/dummy-data';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { CATEGORIES, MEALS } from '../data/dummy-data';
 
 function CategorieMealsScreen({ route, navigation }) {
     const { categoryId } = route.params;
-
     const selectedGategory = CATEGORIES.find(cat => cat.id === categoryId);
+
+    const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(categoryId) >= 0);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -14,17 +14,21 @@ function CategorieMealsScreen({ route, navigation }) {
         });
     }, [navigation, route]);
 
+    const renderMealItem = itemData => {
+        return <View>
+            <Text>{itemData.item.title}</Text>
+        </View>
+    }
+
     return (
         <View style={styles.screen}>
             <Text>Category Meal Screen: </Text>
-            <Text>{selectedGategory.title}</Text>
-            <Button
-                title="Go to meal detail!"
-                onPress={() => navigation.navigate('MealDetail')}
-            />
-            <Button title="Go back"
-                onPress={() => navigation.pop()}
-            />
+            <View>
+                <FlatList
+                    data={displayedMeals}
+                    keyExtractor={(item) => item.id}
+                    renderItem={renderMealItem} />
+            </View>
         </View>
     );
 }
