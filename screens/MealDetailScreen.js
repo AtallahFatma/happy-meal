@@ -1,5 +1,9 @@
 import React, { useLayoutEffect } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { MaterialIcons } from '@expo/vector-icons';
+
+import HeaderButton from '../components/HeaderButton';
 import { MEALS } from '../data/dummy-data';
 
 function MealDetailScreen({ route, navigation }) {
@@ -9,8 +13,11 @@ function MealDetailScreen({ route, navigation }) {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerTitle: selectedMeal.title,
+            headerRight: () => (
+                <MaterialIcons name="favorite-outline" size={24} color="black" onPress={() => { console.log('favv') }} />
+            )
         });
-    }, [navigation, route]);
+    }, [navigation]);
 
     return (
         <View style={styles.screen}>
