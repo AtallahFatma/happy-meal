@@ -39,6 +39,7 @@ function HomeTabs() {
         component={CategoriesScreen}
         options={{
           headerTitle: '',
+          headerShown: false,
           tabBarActiveTintColor: colors.orange,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="restaurant" size={size} color={color} />)
@@ -47,6 +48,7 @@ function HomeTabs() {
         name="Favorites"
         component={FavoritesScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="favorite-border" size={size} color={color} />
           )
