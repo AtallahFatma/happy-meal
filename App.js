@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { enableScreens } from 'react-native-screens';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 
 import colors from './config/colors';
 import CategoriesScreen from './screens/CategoriesScreen';
@@ -28,9 +30,27 @@ const MealsTabNavigartor = createBottomTabNavigator();
 
 function HomeTabs() {
   return (
-    <MealsTabNavigartor.Navigator>
-      <MealsTabNavigartor.Screen name="Meals" component={CategoriesScreen} options={{ headerTitle: '' }} />
-      <MealsTabNavigartor.Screen name="Favorites" component={FavoritesScreen} />
+    <MealsTabNavigartor.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: colors.primary,
+      }}>
+      <MealsTabNavigartor.Screen
+        name="Meals"
+        component={CategoriesScreen}
+        options={{
+          headerTitle: '',
+          tabBarActiveTintColor: colors.orange,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="restaurant" size={size} color={color} />)
+        }} />
+      <MealsTabNavigartor.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="favorite-border" size={size} color={color} />
+          )
+        }} />
     </MealsTabNavigartor.Navigator>
   );
 }
@@ -52,7 +72,10 @@ export default function App() {
           headerTintColor: Platform.OS === 'android' ? colors.white : colors.primary,
         }
       }>
-        <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Screen
+          name="Home"
+          component={HomeTabs}
+        />
         <Stack.Screen
           name="CategoriesScreen"
           component={CategoriesScreen}
