@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { enableScreens } from 'react-native-screens';
+
+import colors from './config/colors';
 import CategoriesScreen from './screens/CategoriesScreen';
 import CategorieMealsScreen from './screens/CategorieMealsScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import colors from './config/colors';
-import { enableScreens } from 'react-native-screens';
+import FavoritesScreen from './screens/FavoritesScreen';
 
 enableScreens();
 
@@ -20,6 +23,17 @@ const fetchFonts = () => {
 }
 
 const Stack = createNativeStackNavigator();
+const MealsTabNavigartor = createBottomTabNavigator();
+
+
+function HomeTabs() {
+  return (
+    <MealsTabNavigartor.Navigator>
+      <MealsTabNavigartor.Screen name="Meals" component={CategoriesScreen} options={{ headerTitle: '' }} />
+      <MealsTabNavigartor.Screen name="Favorites" component={FavoritesScreen} />
+    </MealsTabNavigartor.Navigator>
+  );
+}
 
 export default function App() {
   const [FontLoaded, setFontLoaded] = useState(false);
@@ -38,6 +52,7 @@ export default function App() {
           headerTintColor: Platform.OS === 'android' ? colors.white : colors.primary,
         }
       }>
+        <Stack.Screen name="Home" component={HomeTabs} />
         <Stack.Screen
           name="CategoriesScreen"
           component={CategoriesScreen}
