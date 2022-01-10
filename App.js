@@ -26,7 +26,26 @@ const fetchFonts = () => {
 
 const Stack = createNativeStackNavigator();
 const MealsTabNavigartor = createBottomTabNavigator();
+const FavNavigator = createNativeStackNavigator()
 
+function FavStack() {
+  return (
+    <FavNavigator.Navigator>
+      <FavNavigator.Screen
+        name="FavoritesScreen"
+        component={FavoritesScreen}
+        options={{
+          headerShown: false
+        }}
+      />
+      <FavNavigator.Screen
+        name="MealDetail"
+        component={MealDetailScreen}
+        options={{ title: 'Meal details' }}
+      />
+    </FavNavigator.Navigator>
+  )
+}
 
 function HomeTabs() {
   return (
@@ -46,7 +65,7 @@ function HomeTabs() {
         }} />
       <MealsTabNavigartor.Screen
         name="Favorites"
-        component={FavoritesScreen}
+        component={FavStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
@@ -75,7 +94,7 @@ export default function App() {
         }
       }>
         <Stack.Screen
-          name="Home"
+          name="Happy Meal"
           component={HomeTabs}
         />
         <Stack.Screen
