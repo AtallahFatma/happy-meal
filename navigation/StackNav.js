@@ -15,6 +15,12 @@ function StackNav() {
                     backgroundColor: Platform.OS === 'android' ? colors.primary : ''
                 },
                 headerTintColor: Platform.OS === 'android' ? colors.white : colors.primary,
+                headerTitleStyle: {
+                    fontFamily: 'OpenSansBold'
+                },
+                headerBackTitleStyle: {
+                    fontFamily: 'OpenSans'
+                }
             }
         }>
             <Stack.Screen

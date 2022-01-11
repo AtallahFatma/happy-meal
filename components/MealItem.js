@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import colors from '../config/colors';
+import DefaultText from './DefaultText';
 
 function MealItem({ title, onSelectMeal, duration, complexity, affordability, image }) {
     let TouchableCmp = TouchableOpacity;
@@ -19,9 +20,9 @@ function MealItem({ title, onSelectMeal, duration, complexity, affordability, im
                         </ImageBackground>
                     </View>
                     <View style={{ ...styles.mealDetail, ...styles.mealRow }}>
-                        <Text>{duration}m</Text>
-                        <Text>{complexity.toUpperCase()}</Text>
-                        <Text>{affordability.toUpperCase()}</Text>
+                        <DefaultText>{duration}m</DefaultText>
+                        <DefaultText>{complexity.toUpperCase()}</DefaultText>
+                        <DefaultText>{affordability.toUpperCase()}</DefaultText>
                     </View>
                 </View>
             </TouchableCmp>
