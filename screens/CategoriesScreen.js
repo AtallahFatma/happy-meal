@@ -1,9 +1,9 @@
 import React, { useLayoutEffect } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+
 import CategoryGridTile from '../components/CategoryGridTile';
 import { CATEGORIES } from '../data/dummy-data'
-
-
 
 function CategoriesScreen({ navigation }) {
 
