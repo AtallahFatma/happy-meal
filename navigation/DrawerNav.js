@@ -26,7 +26,14 @@ function MainNavigator() {
 
 
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator screenOptions={{
+            headerTintColor: colors.primary,
+            drawerActiveTintColor: colors.primary,
+            drawerLabelStyle: {
+                fontFamily: 'OpenSansBold',
+                fontSize: 16
+            }
+        }}>
             <Drawer.Screen name="MealsFavs"
                 component={TabsBottomNav} options={{
                     drawerLabel: 'Meals',
